@@ -8,8 +8,9 @@
 <body>
    <div id="board-container">
        <div id="board-field" class="col-sm-0">
-           <canvas id="game-canvas" style="background: url('assets/board.jpg')" class="hiddenOnstart"></canvas>
+           <canvas id="game-canvas" style="background: url('assets/background.jpg')" class="hiddenOnstart"></canvas>
         </div>
+        <div id="images" style="display:none;"></div>
    </div>
 
    <!-- Modals -->
@@ -46,8 +47,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script src="UiEntry.js"></script>
-
+<script src="socketUtil.js"></script>
+<script src="canvasUtil.js"></script>
 
 </body>
 </html>

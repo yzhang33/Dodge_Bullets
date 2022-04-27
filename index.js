@@ -1,3 +1,3 @@
 //entry point
-//require('./sockets/socketMain')
+require('./sockets/socketMain')
 require('./expressServer/expressMain')

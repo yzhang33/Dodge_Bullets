@@ -6,7 +6,7 @@ class UserData{
         this.radius = settings.defaultSize;
         //generate random identity
         if(settings.copChosen == false){
-            var ret = getRandomIdentity();
+            var ret = this.getRandomIdentity();
             if(ret == 1){
                 settings.copChosen = true;
                 this.identity = "cop"
@@ -18,9 +18,20 @@ class UserData{
         }
         //appearnce for people
         if(this.identity === "people"){
-            this.appearance = getRandomAppearance();
+            this.appearance = this.getRandomAppearance();
         }else{
-            this.appearance = null;
+            this.appearance = -1;
         }
     }
+
+    getRandomIdentity(){
+        // return Math.floor(Math.random()*2);
+        return -1;
+    }
+    
+    getRandomAppearance(){
+        return Math.floor(Math.random()*10);
+    }
 }
+
+module.exports = UserData;

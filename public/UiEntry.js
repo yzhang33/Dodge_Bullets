@@ -9,7 +9,7 @@ canvas.height = wHeight;
 //board variables
 let user={}
 let users=[]
-let posts=[]
+
 console.log(wHeight +" "+wWidth);
 $(window).load(()=>{
     $('#loginModal').modal('show');
@@ -20,9 +20,9 @@ $('.name-form').submit((event)=>{
     event.preventDefault()
     user.name = document.querySelector('#name-input').value;
     $('#loginModal').modal('hide');
-    
     //start board when clicked submit
     $('.hiddenOnStart').removeAttr('hidden');
-    //init();
+    //init called from socketUtil
+    init();
 })
 
