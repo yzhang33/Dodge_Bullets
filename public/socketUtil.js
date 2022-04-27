@@ -11,6 +11,8 @@ let roles = ["./assets/basketball.png",
 
 //connection to server
 let socket = io.connect('http://localhost:8080');
+//
+let fire = false;
 
 function init(){
     draw();
@@ -30,23 +32,29 @@ socket.on('initReturn',(data)=>{
 
     console.log(user.userData);
     console.log(roles[user.userData.appearance]);
-    document.querySelector('#images').innerHTML += 
-    `<img id=${user.socketId} 
-          src=${roles[user.userData.appearance]}
-          >`
+    if(user.userData.identity == "people"){
+        //render people assets
+        document.querySelector('#images').innerHTML += 
+        `<img id=${user.socketId} 
+              src=${roles[user.userData.appearance]}
+              >`
+    }
+    //alert message for cop
+    if(user.userData.identity == "cop"){
+        alert("You are coppp!\n"+"Use Space to shoot.");
+    }
 })
 
 socket.on('tok',(data)=>{
     users = data.users;
     //console.log(users)
     users.forEach( (u) =>{
-        //console.log($("."+u.socketId).length);
-        if($("." +u.socketId).length && u.socketId != user.socketId){
+        //console.log(""+u.socketId);
+        if(u.socketId != user.socketId && document.getElementById(""+u.socketId) == null){
             document.querySelector('#images').innerHTML += 
             `<img id=${u.socketId} 
                   src=${roles[u.userData.appearance]}
              >`
-            console.log("hello")
         }
     })
 })

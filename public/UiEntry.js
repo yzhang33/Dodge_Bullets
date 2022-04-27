@@ -1,19 +1,20 @@
 
-let wHeight =window.outerHeight;
-let wWidth = window.outerWidth;
+//var img = document.getElementById('bkj'); 
+
+let wHeight = window.innerWidth;
+let wWidth = window.innerHeight;
 
 let canvas = document.querySelector('#game-canvas');
 let ctx = canvas.getContext('2d');
-canvas.width = wWidth;
-canvas.height = wHeight;
+canvas.width = wHeight;
+canvas.height = wWidth;
 //board variables
 let user={}
 let users=[]
 
 console.log(wHeight +" "+wWidth);
 $(window).load(()=>{
-    $('#loginModal').modal('show');
-    
+    $('#loginModal').modal('show');  
 })
 
 $('.name-form').submit((event)=>{

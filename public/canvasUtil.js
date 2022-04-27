@@ -5,28 +5,56 @@ canvas.addEventListener('mousemove',(e)=>{
         user.userData.y=e.pageY;
     }
 })
-
-
+//fire event for cop
+window.addEventListener("keydown", function(event) {
+    if (event.defaultPrevented) {
+      return;
+    }
+    if(user.userData.identity == "people"){
+        return;
+    }
+    if (event.code === "Space" && user.userData.identity == "cop"){
+        // Handle fire
+        fire = true;
+    }
+    event.preventDefault();
+  }, true);
+  
+//draw all the image tags
 function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    if(user.userData != undefined){
-        let myImage = document.getElementById(user.socketId);
-        myImage.style.width = '50px';
-        myImage.style.height = '50px';
-        ctx.drawImage(myImage,user.userData.x,user.userData.y,200,200);
-        //drawImage(user)
+    let bkImage = document.getElementById("bkj");
+    ctx.drawImage(bkImage,0,0,canvas.width,canvas.height);
+
+    //cop fire animation
+    if(fire == true){
+
     }
-    // if(users.length > 0){
-    //     users.forEach((u)=>{
-    //         console.log(u.userData.identity);
-    //         if(u.userData.identity != -1){
-    //             let myImage = document.getElementsByClassName("#"+u.socketId);
-    //             myImage.style.width = '50px';
-    //             myImage.style.height = '50px';
-    //             ctx.drawImage(myImage,user.userData.x,user.userData.y,200,200);
-    //         }  
-    //     })
-    //}
-    
+    //render user images
+    if(user.userData != undefined ){
+        generateImage(user);   
+    }
+    //render connected user image
+    if(users.length > 0){
+        users.forEach((u)=>{
+            //console.log(u.userData.identity);
+            if(u.socketId != user.socketId){
+                generateImage(u);
+            } 
+        });
+    }
     requestAnimationFrame(draw);
+}
+
+function generateImage(u){
+    let elementId="";
+    if(u.userData.identity == "people"){
+        elementId = ""+u.socketId;
+    }else{
+        elementId = "cop";
+    }
+    let myImage = document.getElementById(elementId);
+    myImage.style.width = '50px';
+    myImage.style.height = '50px';
+    ctx.drawImage(myImage,u.userData.x,u.userData.y,200,200);
 }

@@ -13,15 +13,15 @@ let settings={
 
 let users = []
 
+// let tests = [];
 // let u1 = new UserData("pete",settings);
-// let u2 = new UserData("p2",settings);
-// let u3 = new UserData("p3",settings);
-
-// console.log(settings);
-// console.log(u1);
-// console.log(u2);
-// console.log(u3);
-
+// for(var i=0;i<11;i++){
+//     tests.push(new UserData("i",settings));
+// }
+// for(var i=0;i<11;i++){
+//     console.log(tests[i]);
+// }
+// console.log(settings)
 
 //boardcast 
 setInterval(()=>{
@@ -39,11 +39,18 @@ io.sockets.on('connect',(socket)=>{
         //init new user data obj
         let userData = new UserData(data.userName, settings);
         user = new User(socket.id,userData);
+        users.push(user);
+        //testing purpose delete later
+        if(users.length == 1){
+            user.userData.identity = "cop";
+            settings.copChosen = true;
+        }
+        //
         //send dummy data when connected
         socket.emit('initReturn', {
             userObject:user
         });
-        users.push(user);
+       
         console.log("new user connected:"+user.userData.name);
     });
     //receiveing user information

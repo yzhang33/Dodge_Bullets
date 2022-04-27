@@ -25,8 +25,7 @@ class UserData{
     }
 
     getRandomIdentity(){
-        // return Math.floor(Math.random()*2);
-        return -1;
+        return Math.floor(Math.random()*2);
     }
     
     getRandomAppearance(){

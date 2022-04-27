@@ -8,11 +8,13 @@
 <body>
    <div id="board-container">
        <div id="board-field" class="col-sm-0">
-           <canvas id="game-canvas" style="background: url('assets/background.jpg')" class="hiddenOnstart"></canvas>
+           <canvas id="game-canvas" class="hiddenOnstart"></canvas>
         </div>
-        <div id="images" style="display:none;"></div>
+        <div id="images" style="display:none;">
+            <img id="bkj" src="assets/background.jpg">
+            <img id="cop" src="assets/ship.png">
+        </div>
    </div>
-
    <!-- Modals -->
    <!-- Log in modals -->
    <div id="loginModal" class="modal fade" role="dialog">
