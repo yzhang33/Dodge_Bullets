@@ -17,7 +17,9 @@ let fire = false;
 function init(){
     draw();
     socket.emit('init',{
-        userName:user.name
+        userName:user.name,
+        canvasWidth:canvas.width,
+        canvasHeight:canvas.height 
     })
 }
 

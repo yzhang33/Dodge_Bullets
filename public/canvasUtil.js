@@ -5,6 +5,7 @@ canvas.addEventListener('mousemove',(e)=>{
         user.userData.y=e.pageY;
     }
 })
+
 //fire event for cop
 window.addEventListener("keydown", function(event) {
     if (event.defaultPrevented) {
@@ -15,7 +16,11 @@ window.addEventListener("keydown", function(event) {
     }
     if (event.code === "Space" && user.userData.identity == "cop"){
         // Handle fire
-        fire = true;
+        socket.emit("userFired",{
+            copVectorX: user.userData.x,
+            copVectorY:user.userData.y,
+            fired: true
+        })
     }
     event.preventDefault();
   }, true);
@@ -25,11 +30,6 @@ function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     let bkImage = document.getElementById("bkj");
     ctx.drawImage(bkImage,0,0,canvas.width,canvas.height);
-
-    //cop fire animation
-    if(fire == true){
-
-    }
     //render user images
     if(user.userData != undefined ){
         generateImage(user);   
@@ -46,6 +46,7 @@ function draw(){
     requestAnimationFrame(draw);
 }
 
+//used to generate image associated
 function generateImage(u){
     let elementId="";
     if(u.userData.identity == "people"){

@@ -12,7 +12,7 @@ let settings={
 }
 
 let users = []
-
+let currentBullets=[];
 // let tests = [];
 // let u1 = new UserData("pete",settings);
 // for(var i=0;i<11;i++){
@@ -32,10 +32,24 @@ setInterval(()=>{
     }
 },33);//update users information every 30fps
 
+//boardcast bullet position 30 fps
+// setInterval(()=>{
+//     io.to('board').emit('userFired',(data)=>{
+//         if(data.fired == true){
+//             //checking collusions
+//         }
+//     });
+// },33);
+
 io.sockets.on('connect',(socket)=>{
     let user = {};
     socket.on('init',(data)=>{
         socket.join('board');
+        //socket.join('fire');
+        //update settings
+        settings.defaultCanvasWidth = data.canvasWidth;
+        settings.defaultCanvasHeigh = data.canvasHeight;
+
         //init new user data obj
         let userData = new UserData(data.userName, settings);
         user = new User(socket.id,userData);
