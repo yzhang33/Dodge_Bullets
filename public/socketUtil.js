@@ -31,7 +31,7 @@ socket.on('initReturn',(data)=>{
             yVector:user.userData.y
         })
     },33);
-
+    
     console.log(user.userData);
     console.log(roles[user.userData.appearance]);
     if(user.userData.identity == "people"){
@@ -49,6 +49,8 @@ socket.on('initReturn',(data)=>{
 
 socket.on('tok',(data)=>{
     users = data.users;
+    bullets = data.currentBullets;
+    console.log(bullets);
     //console.log(users)
     users.forEach( (u) =>{
         //console.log(""+u.socketId);

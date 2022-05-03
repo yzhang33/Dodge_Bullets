@@ -11,6 +11,7 @@ canvas.height = wWidth;
 //board variables
 let user={}
 let users=[]
+let bullets = []
 
 console.log(wHeight +" "+wWidth);
 $(window).load(()=>{
