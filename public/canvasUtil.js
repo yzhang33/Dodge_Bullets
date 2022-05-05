@@ -1,9 +1,15 @@
+//musics
+const audio = document.querySelector("#backgroundMusic");
+const bubble = document.querySelector("#bubble");
 
 canvas.addEventListener('mousemove',(e)=>{
     if(user.socketId != null){
         user.userData.x=e.pageX;
         user.userData.y=e.pageY;
     }
+    audio.volume = 0.5;
+    audio.loop = true;
+    audio.play();
 })
 
 //fire event for cop
@@ -17,6 +23,7 @@ window.addEventListener("keydown", function(event) {
     if (event.code === "Space" && user.userData.identity == "cop"){
         // Handle fire
         fire = true;
+        bubble.play();
         socket.emit("copFired",{
             copVectorX: user.userData.x,
             copVectorY: user.userData.y,
@@ -77,12 +84,12 @@ function generateImage(u){
 //used to generate bullets 
 //********************************************************** */ */
 function generateBullet(b){
-    console.log(b);
+    //console.log(b);
     ctx.beginPath();
     ctx.arc(b.bulletX, b.bulletY-40, 20, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.lineWidth = 5;
-    ctx.strokeStyle = '#003300';
+    ctx.strokeStyle = b.color;
     ctx.stroke();
 }
 //***********************************************************
@@ -92,7 +99,7 @@ function collusion(u1,u2){
     var d1 = u1.userData.x - u2.userData.x;
     var d2 = u1.userData.y - u2.userData.y;
     var dist = Math.sqrt(d1*d1-d2*d2);
-    if(dist < 60){
+    if(dist < 30){
         return true;
     }
     return false;

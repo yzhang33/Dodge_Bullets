@@ -43,14 +43,14 @@ socket.on('initReturn',(data)=>{
     }
     //alert message for cop
     if(user.userData.identity == "cop"){
-        alert("You are coppp!\n"+"Use Space to shoot.");
+        alert("You are bubble generator!\n"+"Use Space to make bubble.");
     }
 })
 
 socket.on('tok',(data)=>{
     users = data.users;
     bullets = data.currentBullets;
-    console.log(bullets);
+    //console.log(bullets);
     //console.log(users)
     users.forEach( (u) =>{
         //console.log(""+u.socketId);
